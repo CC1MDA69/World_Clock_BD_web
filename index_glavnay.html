@@ -1,18 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap"
-            rel="stylesheet"
-        />
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-<body>
-    
-</body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * { font-family: 'Irish Grover', cursive; }
+      .clock-digit {
+        font-size: clamp(72px, 12vw, 160px);
+        font-weight: 400;
+        letter-spacing: -2px;
+        line-height: 1;
+        color: #111;
+      }
+      .clock-sep {
+        font-size: clamp(60px, 10vw, 140px);
+        font-weight: 400;
+        color: #111;
+        line-height: 1;
+        padding: 0 4px;
+      }
+      .search-input::placeholder { color: #aaa; }
+      .search-input:focus { outline: none; }
+    </style>
+</head>
+<body class="min-h-screen bg-[#f0f0f0]" style="font-family: 'Irish Grover', cursive;">
+
+    <!-- Header -->
+    <header class="w-full px-8 py-5 flex items-center justify-between bg-[#f0f0f0]">
+      <span class="text-xl text-black font-normal tracking-wide">Time</span>
+
+      <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm w-64">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+        </svg>
+        <input type="text" placeholder="Поиск" class="search-input bg-transparent text-sm text-gray-700 w-full" />
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="index_Avtorizate1.html" class="px-6 py-2 rounded-full border border-gray-300 bg-white text-sm text-black hover:bg-gray-50 transition">
+          Войти
+        </a>
+        <a href="index_Registration2.html" class="px-6 py-2 rounded-full bg-black text-sm text-white hover:bg-gray-800 transition">
+          Регистрация
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-8 pt-10 pb-16">
+
+      <!-- Clock -->
+      <div class="flex items-center justify-center mb-8 select-none">
+        <span class="clock-digit" id="hours">06</span>
+        <span class="clock-sep">:</span>
+        <span class="clock-digit" id="minutes">16</span>
+        <span class="clock-sep">:</span>
+        <span class="clock-digit" id="seconds">00</span>
+      </div>
+
+      <!-- Location & Weather -->
+      <div class="flex items-center justify-between mb-10 px-1">
+        <div>
+          <p class="text-sm text-gray-500">Россия</p>
+          <p class="text-base text-gray-800">Краснодар</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm6.36 2.64a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0zM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2zM4.93 4.64l.71.71A1 1 0 0 1 4.22 6.76l-.71-.71A1 1 0 0 1 4.93 4.64zM4 12H3a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2zm1.64 6.36a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 1.41l-.71.71zm13.72-1.41a1 1 0 0 1-1.41 1.41l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71zM12 5a7 7 0 1 0 0 14A7 7 0 0 0 12 5z"/>
+          </svg>
+          <span class="text-base text-gray-800">19 C</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-gray-300 mb-6"></div>
+
+      <!-- Time Zones Table -->
+      <div class="grid grid-cols-3 gap-4">
+
+        <!-- Сочи -->
+        <div class="bg-white rounded-2xl px-5 py-4 shadow-sm">
+          <p class="text-xs text-gray-400 mb-1">Сочи</p>
+          <p class="text-2xl text-gray-900" id="tz-sochi">18:19</p>
+          <div class="flex items-center gap-1 mt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-orange-400" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm4.95 2.05a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0zM19 11h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM5.05 4.05l.71.71A1 1 0 0 1 4.34 6.17l-.71-.71A1 1 0 0 1 5.05 4.05zM5 12H4a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2zm.76 5.24a1 1 0 0 0-1.41 1.41l.71.71a1 1 0 0 0 1.41-1.41l-.71-.71zm12.48 1.41a1 1 0 0 0-1.41-1.41l-.71.71a1 1 0 0 0 1.41 1.41l.71-.71zM12 5a7 7 0 1 0 0 14A7 7 0 0 0 12 5z"/>
+            </svg>
+            <span class="text-xs text-gray-400">UTC +3</span>
+          </div>
+        </div>
+
+        <!-- Москва -->
+        <div class="bg-white rounded-2xl px-5 py-4 shadow-sm">
+          <p class="text-xs text-gray-400 mb-1">Москва</p>
+          <p class="text-2xl text-gray-900" id="tz-moscow">18:16</p>
+          <div class="flex items-center gap-1 mt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-orange-400" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm4.95 2.05a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0zM19 11h1a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2zM5.05 4.05l.71.71A1 1 0 0 1 4.34 6.17l-.71-.71A1 1 0 0 1 5.05 4.05zM5 12H4a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2zm.76 5.24a1 1 0 0 0-1.41 1.41l.71.71a1 1 0 0 0 1.41-1.41l-.71-.71zm12.48 1.41a1 1 0 0 0-1.41-1.41l-.71.71a1 1 0 0 0 1.41 1.41l.71-.71zM12 5a7 7 0 1 0 0 14A7 7 0 0 0 12 5z"/>
+            </svg>
+            <span class="text-xs text-gray-400">UTC +3</span>
+          </div>
+        </div>
+
+        <!-- Мурманск -->
+        <div class="bg-white rounded-2xl px-5 py-4 shadow-sm">
+          <p class="text-xs text-gray-400 mb-1">Мурманск</p>
+          <p class="text-2xl text-gray-900" id="tz-murmansk">18:16</p>
+          <div class="flex items-center gap-1 mt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93V18a1 1 0 0 0-2 0v1.93C7.06 19.44 4.56 16.94 4.07 14H6a1 1 0 0 0 0-2H4.07C4.56 9.06 7.06 6.56 10 6.07V8a1 1 0 0 0 2 0V6.07c2.94.49 5.44 2.99 5.93 5.93H16a1 1 0 0 0 0 2h1.93c-.49 2.94-2.99 5.44-5.93 5.93z"/>
+            </svg>
+            <span class="text-xs text-gray-400">UTC +3</span>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <script>
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function updateClock() {
+        const now = new Date();
+        document.getElementById('hours').textContent = pad(now.getHours());
+        document.getElementById('minutes').textContent = pad(now.getMinutes());
+        document.getElementById('seconds').textContent = pad(now.getSeconds());
+
+        const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
+        const msk = new Date(utcMs + 3 * 3600000);
+        const mskStr = pad(msk.getHours()) + ':' + pad(msk.getMinutes());
+        document.getElementById('tz-sochi').textContent = mskStr;
+        document.getElementById('tz-moscow').textContent = mskStr;
+        document.getElementById('tz-murmansk').textContent = mskStr;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
 </html>
